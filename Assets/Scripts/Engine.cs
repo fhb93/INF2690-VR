@@ -38,6 +38,8 @@ public class Engine : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
+    public float EngineAudioSourceVol { get { if (audioSource != null) { return audioSource.volume; } return 0f; } }
+
     private bool IsFirstTimeEngineOn = true;
 
     [SerializeField]
@@ -100,6 +102,7 @@ public class Engine : MonoBehaviour
 
         //Time.timeScale = 10f;
     }
+
 
     // Update is called once per frame
     void Update()
