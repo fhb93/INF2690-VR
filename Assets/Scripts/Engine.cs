@@ -82,6 +82,8 @@ public class Engine : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
+        audioSource.spatialBlend = 0.6f;
+
         m_EulerAngleVelocity = new Vector3(0, 1, 0);
 
         backPosition = GameObject.Find("ForcesTarget").transform.position;
