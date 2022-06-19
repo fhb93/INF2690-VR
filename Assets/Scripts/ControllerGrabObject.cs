@@ -12,23 +12,33 @@ public class ControllerGrabObject : MonoBehaviour
     private GameObject collidingObject; // 1
     private GameObject objectInHand; // 2
 
-    private SpinLever grammophone;
+    private SpinLever gramophone;
     private Engine wheelController;
 
     [SerializeField]
     private GameObject ZeppelinCockpitPlayerPos;
 
+    [SerializeField]
+    private GameObject shipWheelCenterObj;
+
+    [SerializeField]
+    private Vector3 shipWheelCenterVector;
+
+    private Coroutine resetWheel;
+
     private void Start()
     {
-        grammophone = GameObject.Find("SpinPoint").GetComponent<SpinLever>();
+        gramophone = GameObject.Find("SpinPoint").GetComponent<SpinLever>();
         wheelController = GameObject.Find("ZeppelinCockpit").GetComponent<Engine>();
+        shipWheelCenterVector = shipWheelCenterObj.transform.position;
         //ZeppelinCockpitPlayerPos = GameObject.Find("PlayerPosition");
     }
     // Update is called once per frame
     void Update()
     {
+        shipWheelCenterVector = shipWheelCenterObj.transform.position;
 
-       // gameObject.transform.position = ZeppelinCockpitPlayerPos.transform.localPosition;
+        // gameObject.transform.position = ZeppelinCockpitPlayerPos.transform.localPosition;
         //gameObject.transform.rotation = ZeppelinCockpitPlayerPos.transform.localRotation;
         // 1
         if (grabAction.GetLastStateDown(handType))
@@ -60,7 +70,27 @@ public class ControllerGrabObject : MonoBehaviour
         // 2
         collidingObject = col.gameObject;
 
+        if(collidingObject.GetComponent<Renderer>() != null)
+        {
+            originalColor = collidingObject.GetComponent<Renderer>().material.color;
+
+            collidingObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else
+        {
+            if(collidingObject.name.Contains("Gramoph"))
+            {
+                Renderer renderer = collidingObject.GetComponentsInChildren<Renderer>()[3];
+
+                originalColor = renderer.material.color;
+
+                renderer.material.color = Color.green;
+            }
+        }
+       
     }
+
+    public Color originalColor;
 
     // 1
     public void OnTriggerEnter(Collider other)
@@ -82,6 +112,17 @@ public class ControllerGrabObject : MonoBehaviour
             return;
         }
 
+        if (collidingObject.name.Contains("Gramoph") == false)
+        {
+            collidingObject.GetComponent<Renderer>().material.color = originalColor;
+        }
+        else
+        {
+            Renderer renderer = collidingObject.GetComponentsInChildren<Renderer>()[3];
+
+            renderer.material.color = originalColor;
+        }
+
         collidingObject = null;
     }
 
@@ -95,9 +136,9 @@ public class ControllerGrabObject : MonoBehaviour
         //joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
         objectInHand = collidingObject;
         
-        if (objectInHand.name != "default")
+        if (objectInHand.name != "shipWheel")
         {
-            if (objectInHand.name != "Cube_Cube_Lever")
+            if (objectInHand.name != "gramophoneLever")
             {
                 if (objectInHand.GetComponentInParent<SpinControlLever>() != null)
                 {
@@ -106,7 +147,7 @@ public class ControllerGrabObject : MonoBehaviour
             }
             else
             {
-                grammophone.UserInput = true;
+                gramophone.UserInput = true;
             }
 
             collidingObject = null;
@@ -116,20 +157,51 @@ public class ControllerGrabObject : MonoBehaviour
         }
         else
         {
-            
 
-            if(transform.position.x > wheelController.gameObject.transform.position.x)
+
+            if (transform.position.x > shipWheelCenterObj.transform.position.x)
             {
+                Debug.Log("DIREITA");
+
                 wheelController.InputDirection[(int) Engine.Dir.RIGHT] = 1;
+
                 wheelController.InputDirection[(int) Engine.Dir.LEFT] = 0;
+
+                CorouWheel();
             }
             else
             {
+                Debug.Log("ESQUERDA");
+
                 wheelController.InputDirection[(int)Engine.Dir.RIGHT] = 0;
+
                 wheelController.InputDirection[(int)Engine.Dir.LEFT] = -1;
+
+                CorouWheel();
             }
         }
 
+    }
+
+    private void CorouWheel()
+    {
+        if (resetWheel != null)
+        {
+            StopCoroutine(resetWheel);
+
+            resetWheel = null;
+        }
+
+        resetWheel = StartCoroutine(ResetWheelContoller());
+    }
+
+
+    IEnumerator ResetWheelContoller()
+    {
+        yield return new WaitForSeconds(2f);
+
+        wheelController.InputDirection[(int)Engine.Dir.RIGHT] = 0;
+        wheelController.InputDirection[(int)Engine.Dir.LEFT] = 0;
     }
 
     // 3
