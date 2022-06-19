@@ -143,6 +143,8 @@ public class ControllerGrabObject : MonoBehaviour
                 if (objectInHand.GetComponentInParent<SpinControlLever>() != null)
                 {
                     objectInHand.GetComponentInParent<SpinControlLever>().UserInput = true;
+
+                    collidingObject.GetComponent<Renderer>().material.color = originalColor;
                 }
             }
             else
