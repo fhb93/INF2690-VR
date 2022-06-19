@@ -55,7 +55,7 @@ public class MainMenuController : MonoBehaviour
 
             particleSystems[0].Play();
 
-            particleSystems[1].Play();
+           // particleSystems[1].Play();
 
             yield return new WaitForSecondsRealtime(4f);
         }

@@ -247,9 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257424057f3fd6a4a97d0940ba5f56c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images:
-  - {fileID: 5606140515243810407}
-  - {fileID: 5606140516118579444}
+  images: []
   source: {fileID: 5606140515789653868}
   particleSystems:
   - {fileID: 0}
@@ -347,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5606140516180514170
 RectTransform:
   m_ObjectHideFlags: 0
