@@ -22,9 +22,14 @@ public class SpinControlLever : MonoBehaviour
 
     private float angleLever = 0;
 
+    [SerializeField]
+    private bool IsAvoidingInputWhileMoving;
+
     // Start is called before the first frame update
     void Start()
     {
+        IsAvoidingInputWhileMoving = false;
+
         Lever = gameObject;
     }
 
@@ -32,15 +37,19 @@ public class SpinControlLever : MonoBehaviour
     void Update()
     {
         //Temp
+        
         if((ControlsHydrogen && Input.GetKeyDown(KeyCode.H)) || (ControlsEngine && Input.GetKeyDown(KeyCode.E)))
         {
-            UserInput = true;
+            if (IsAvoidingInputWhileMoving == false)
+            {
+                UserInput = true;
+            }
         }
 
         if (UserInput)
         {
             UserInput = false;
-                                  
+
             StartCoroutine(LeverCoroutine());
         }
     }
@@ -48,6 +57,8 @@ public class SpinControlLever : MonoBehaviour
     IEnumerator LeverCoroutine()
     {
         int i = 0;
+
+        IsAvoidingInputWhileMoving = true;
 
         angleLever = Lever.transform.rotation.z;
 
@@ -93,5 +104,7 @@ public class SpinControlLever : MonoBehaviour
         {
             engine.EngineOn = !engine.EngineOn;
         }
+
+        IsAvoidingInputWhileMoving = false;
     }
 }

@@ -53,7 +53,7 @@ public class SpinLever : MonoBehaviour
 
         int i = 0;
 
-        while(i < 1024)
+        while(i < 512)
         {
             angleLever += 0.5f * Time.deltaTime;
 
