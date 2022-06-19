@@ -34,6 +34,14 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/LeftHand",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/default/in/RightHand",
+      "type": "pose"
+    },
+    {
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"

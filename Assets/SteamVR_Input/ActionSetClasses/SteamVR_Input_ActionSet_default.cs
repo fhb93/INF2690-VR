@@ -72,5 +72,21 @@ namespace Valve.VR
                 return SteamVR_Actions.default_SnapTurnRight;
             }
         }
+        
+        public virtual SteamVR_Action_Pose LeftHand
+        {
+            get
+            {
+                return SteamVR_Actions.default_LeftHand;
+            }
+        }
+        
+        public virtual SteamVR_Action_Pose RightHand
+        {
+            get
+            {
+                return SteamVR_Actions.default_RightHand;
+            }
+        }
     }
 }

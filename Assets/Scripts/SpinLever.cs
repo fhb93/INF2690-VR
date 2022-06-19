@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Used for Grammophone
+/// </summary>
 public class SpinLever : MonoBehaviour
 {
     public Transform Disc { get; private set; }

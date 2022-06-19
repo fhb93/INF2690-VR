@@ -31,6 +31,10 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_SnapTurnRight;
         
+        private static SteamVR_Action_Pose p_default_LeftHand;
+        
+        private static SteamVR_Action_Pose p_default_RightHand;
+        
         private static SteamVR_Action_Pose p_mixedreality_ExternalCamera;
         
         public static SteamVR_Action_Boolean default_Teleport
@@ -89,6 +93,22 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Pose default_LeftHand
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_LeftHand.GetCopy<SteamVR_Action_Pose>();
+            }
+        }
+        
+        public static SteamVR_Action_Pose default_RightHand
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_RightHand.GetCopy<SteamVR_Action_Pose>();
+            }
+        }
+        
         public static SteamVR_Action_Pose mixedreality_ExternalCamera
         {
             get
@@ -107,6 +127,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_SnapTurnLeft,
                     SteamVR_Actions.default_SnapTurnRight,
+                    SteamVR_Actions.default_LeftHand,
+                    SteamVR_Actions.default_RightHand,
                     SteamVR_Actions.mixedreality_ExternalCamera};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_Teleport,
@@ -116,10 +138,14 @@ namespace Valve.VR
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_SnapTurnLeft,
                     SteamVR_Actions.default_SnapTurnRight,
+                    SteamVR_Actions.default_LeftHand,
+                    SteamVR_Actions.default_RightHand,
                     SteamVR_Actions.mixedreality_ExternalCamera};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[0];
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[0];
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
+                    SteamVR_Actions.default_LeftHand,
+                    SteamVR_Actions.default_RightHand,
                     SteamVR_Actions.mixedreality_ExternalCamera};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
                     SteamVR_Actions.default_Teleport,
@@ -150,6 +176,8 @@ namespace Valve.VR
             SteamVR_Actions.p_default_HeadsetOnHead = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/HeadsetOnHead")));
             SteamVR_Actions.p_default_SnapTurnLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/SnapTurnLeft")));
             SteamVR_Actions.p_default_SnapTurnRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/SnapTurnRight")));
+            SteamVR_Actions.p_default_LeftHand = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/default/in/LeftHand")));
+            SteamVR_Actions.p_default_RightHand = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/default/in/RightHand")));
             SteamVR_Actions.p_mixedreality_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/mixedreality/in/ExternalCamera")));
         }
     }
