@@ -263,11 +263,11 @@ public class Engine : MonoBehaviour
     {
         if(left)
         {
-            Wheel.Rotate(Vector3.forward, Mathf.Lerp(WheelAngle, 90, Time.deltaTime));
+            Wheel.Rotate(Vector3.forward, Mathf.Lerp(WheelAngle, 70, Time.deltaTime));
         }
         else
         {
-            Wheel.Rotate(Vector3.forward, Mathf.Lerp(WheelAngle, -90, Time.deltaTime));
+            Wheel.Rotate(Vector3.forward, Mathf.Lerp(WheelAngle, -70, Time.deltaTime));
         }
 
     }
