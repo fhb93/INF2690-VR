@@ -13,6 +13,8 @@ public class SpinLever : MonoBehaviour
 
     public Transform LeverSpinPoint { get; private set; }
 
+    public Renderer materialRenderer { get; private set; }
+
     [SerializeField]
     private AudioSource audioSource;
 
@@ -35,6 +37,8 @@ public class SpinLever : MonoBehaviour
         Disc = GameObject.Find("Cube_Cube_Disc").transform;
 
         audioSource = GetComponentInParent<AudioSource>();
+
+        materialRenderer = GameObject.Find("gramophoneLever").GetComponent<Renderer>();
 
         audioSource.loop = false;
 

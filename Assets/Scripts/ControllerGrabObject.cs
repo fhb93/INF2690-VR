@@ -150,6 +150,8 @@ public class ControllerGrabObject : MonoBehaviour
             else
             {
                 gramophone.UserInput = true;
+
+                gramophone.materialRenderer.material.color = originalColor;
             }
 
             collidingObject = null;
@@ -159,8 +161,6 @@ public class ControllerGrabObject : MonoBehaviour
         }
         else
         {
-
-
             if (transform.position.x > shipWheelCenterObj.transform.position.x)
             {
                 Debug.Log("DIREITA");
