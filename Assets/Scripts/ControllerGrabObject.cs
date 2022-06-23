@@ -224,9 +224,17 @@ public class ControllerGrabObject : MonoBehaviour
 
     private void ReleaseObject()
     {
-        // 1
+
+        if (objectInHand.GetComponent<Renderer>())
+        {
+            Debug.Log("Oi2");
+            objectInHand.GetComponent<Renderer>().material.color = originalColor;
+        }
+
+
         if (GetComponent<FixedJoint>())
         {
+            Debug.Log("Oi1");
             // 2
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(GetComponent<FixedJoint>());
