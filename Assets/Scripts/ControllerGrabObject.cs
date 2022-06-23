@@ -71,7 +71,7 @@ public class ControllerGrabObject : MonoBehaviour
         // 2
         collidingObject = col.gameObject;
 
-        if(collidingObject.GetComponent<Renderer>() != null)
+        if (collidingObject.GetComponent<Renderer>() != null)
         {
             originalColor = collidingObject.GetComponent<Renderer>().material.color;
 
@@ -79,7 +79,7 @@ public class ControllerGrabObject : MonoBehaviour
         }
         else
         {
-            if(collidingObject.name.Contains("Gramoph"))
+            if (collidingObject.name.Contains("Gramoph"))
             {
                 Renderer renderer = collidingObject.GetComponentsInChildren<Renderer>()[3];
 
@@ -88,7 +88,7 @@ public class ControllerGrabObject : MonoBehaviour
                 renderer.material.color = Color.green;
             }
         }
-       
+
     }
 
     public Color originalColor;
@@ -130,7 +130,7 @@ public class ControllerGrabObject : MonoBehaviour
     private void GrabObject()
     {
         objectInHand = collidingObject;
-        
+
         if (objectInHand.name != "shipWheel")
         {
             if (objectInHand.name != "gramophoneLever")
@@ -142,7 +142,7 @@ public class ControllerGrabObject : MonoBehaviour
                     collidingObject.GetComponent<Renderer>().material.color = originalColor;
                 }
 
-                if(objectInHand.name.Contains("1"))
+                if (objectInHand.gameObject.name.Contains("Vinyl"))
                 {
                     objectInHand = collidingObject;
 
@@ -171,9 +171,9 @@ public class ControllerGrabObject : MonoBehaviour
             {
                 Debug.Log("DIREITA");
 
-                wheelController.InputDirection[(int) Engine.Dir.RIGHT] = 1;
+                wheelController.InputDirection[(int)Engine.Dir.RIGHT] = 1;
 
-                wheelController.InputDirection[(int) Engine.Dir.LEFT] = 0;
+                wheelController.InputDirection[(int)Engine.Dir.LEFT] = 0;
 
                 CorouWheel();
             }
@@ -189,7 +189,7 @@ public class ControllerGrabObject : MonoBehaviour
             }
         }
 
-      
+
     }
 
     private void CorouWheel()
@@ -225,11 +225,9 @@ public class ControllerGrabObject : MonoBehaviour
     private void ReleaseObject()
     {
 
-        if (objectInHand.GetComponent<Renderer>())
-        {
-            Debug.Log("Oi2");
-            objectInHand.GetComponent<Renderer>().material.color = originalColor;
-        }
+
+        Debug.Log("Oi2");
+
 
 
         if (GetComponent<FixedJoint>())
@@ -242,6 +240,12 @@ public class ControllerGrabObject : MonoBehaviour
             objectInHand.GetComponent<Rigidbody>().velocity = controllerPose.GetVelocity();
             objectInHand.GetComponent<Rigidbody>().angularVelocity = controllerPose.GetAngularVelocity();
 
+            if (objectInHand.GetComponent<Renderer>())
+            {
+                objectInHand.GetComponent<Renderer>().material.color = originalColor;
+            }
+
+            collidingObject = null;
         }
         // 4
         objectInHand = null;
