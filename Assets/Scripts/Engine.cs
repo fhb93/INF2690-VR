@@ -248,11 +248,6 @@ public class Engine : MonoBehaviour
                     Rotation(Vector3.left);
                     MoveWheel(true);
                 }
-                else if (i == (int)Dir.BACK)
-                {
-
-                    Force = Vector3.back;
-                }
             }
 
         }
@@ -302,7 +297,7 @@ public class Engine : MonoBehaviour
        // rb.AddTorque(Vector3.right * 100000 * Input.GetAxis("Horizontal"));
 
         //multiplicar pela constante do inspector
-        rb.AddForceAtPosition(RotationForce * RotationConstant, backPosition);
+        rb.AddForceAtPosition(RotationForce * RotationConstant * 1000, backPosition);
 
         Force = rb.velocity;
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5919391300694332344}
   - component: {fileID: 5919391300694332342}
   - component: {fileID: 5919391300694332345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TextLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5919391301616501638}
   - component: {fileID: 5919391301616501636}
   - component: {fileID: 5919391301616501639}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 5919391302254133080}
   - component: {fileID: 2927950574734271788}
   - component: {fileID: 5988789767098763436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Vinyl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

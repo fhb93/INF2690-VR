@@ -201,13 +201,13 @@ public class ControllerGrabObject : MonoBehaviour
             resetWheel = null;
         }
 
-        resetWheel = StartCoroutine(ResetWheelContoller());
+        resetWheel = StartCoroutine(ResetWheelController());
     }
 
 
-    IEnumerator ResetWheelContoller()
+    IEnumerator ResetWheelController()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.6f);
 
         wheelController.InputDirection[(int)Engine.Dir.RIGHT] = 0;
         wheelController.InputDirection[(int)Engine.Dir.LEFT] = 0;
