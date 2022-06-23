@@ -34,7 +34,7 @@ public class SpinLever : MonoBehaviour
 
         LeverSpinPoint = gameObject.transform;
 
-        Disc = GameObject.Find("Cube_Cube_Disc").transform;
+       // Disc = GameObject.Find("Vinyl1").transform;
 
         audioSource = GetComponentInParent<AudioSource>();
 
@@ -92,7 +92,7 @@ public class SpinLever : MonoBehaviour
         {
             angle += 0.5f * Time.deltaTime;
 
-            Disc.RotateAround(Disc.position, Disc.up, angle);
+            //Disc.RotateAround(Disc.position, Disc.up, angle);
 
             if(audioSource.isPlaying == false)
             {

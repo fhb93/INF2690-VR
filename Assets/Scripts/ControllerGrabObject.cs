@@ -67,6 +67,7 @@ public class ControllerGrabObject : MonoBehaviour
         {
             return;
         }
+
         // 2
         collidingObject = col.gameObject;
 
@@ -128,12 +129,6 @@ public class ControllerGrabObject : MonoBehaviour
 
     private void GrabObject()
     {
-        // 1
-        //objectInHand = collidingObject;
-        //collidingObject = null;
-        //// 2
-        //var joint = AddFixedJoint();
-        //joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
         objectInHand = collidingObject;
         
         if (objectInHand.name != "shipWheel")
@@ -146,6 +141,17 @@ public class ControllerGrabObject : MonoBehaviour
 
                     collidingObject.GetComponent<Renderer>().material.color = originalColor;
                 }
+
+                if(objectInHand.name.Contains("1"))
+                {
+                    objectInHand = collidingObject;
+
+                    collidingObject = null;
+
+                    var joint = AddFixedJoint();
+
+                    joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
+                }
             }
             else
             {
@@ -156,7 +162,7 @@ public class ControllerGrabObject : MonoBehaviour
 
             collidingObject = null;
 
-            objectInHand = null;
+            //objectInHand = null;
 
         }
         else
@@ -183,6 +189,7 @@ public class ControllerGrabObject : MonoBehaviour
             }
         }
 
+      
     }
 
     private void CorouWheel()
