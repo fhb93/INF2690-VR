@@ -24,13 +24,20 @@ public class ControllerGrabObject : MonoBehaviour
     [SerializeField]
     private Vector3 shipWheelCenterVector;
 
+    [SerializeField]
+    private GramophoneHead gramophoneHead;
+
     private Coroutine resetWheel;
 
     private void Start()
     {
         gramophone = GameObject.Find("SpinPoint").GetComponent<SpinLever>();
+
         wheelController = GameObject.Find("ZeppelinCockpit").GetComponent<Engine>();
+
         shipWheelCenterVector = shipWheelCenterObj.transform.position;
+
+        //gramophoneHead = GameObject.Find("HeadSpinPoint").GetComponent<GramophoneHead>();
         //ZeppelinCockpitPlayerPos = GameObject.Find("PlayerPosition");
     }
     // Update is called once per frame
@@ -79,7 +86,7 @@ public class ControllerGrabObject : MonoBehaviour
         }
         else
         {
-            if (collidingObject.name.Contains("Gramoph"))
+            if (collidingObject.name.Contains("Gramoph") && gramophoneHead.IsHeadReady == true)
             {
                 Renderer renderer = collidingObject.GetComponentsInChildren<Renderer>()[3];
 
@@ -87,6 +94,14 @@ public class ControllerGrabObject : MonoBehaviour
 
                 renderer.material.color = Color.green;
             }
+            //else if (collidingObject.name == "Head" && gramophoneHead.IsHeadReady == false)
+            //{
+            //    Renderer renderer = collidingObject.GetComponentsInChildren<Renderer>()[3];
+
+            //    originalColor = renderer.material.color;
+
+            //    renderer.material.color = Color.green;
+            //}
         }
 
     }
@@ -113,7 +128,7 @@ public class ControllerGrabObject : MonoBehaviour
             return;
         }
 
-        if (collidingObject.name.Contains("Gramoph") == false)
+        if (collidingObject.name.Contains("Gramoph") == false && collidingObject.GetComponent<Renderer>() != null)
         {
             collidingObject.GetComponent<Renderer>().material.color = originalColor;
         }
@@ -142,7 +157,7 @@ public class ControllerGrabObject : MonoBehaviour
                     collidingObject.GetComponent<Renderer>().material.color = originalColor;
                 }
 
-                if (objectInHand.gameObject.name.Contains("Vinyl"))
+                if (objectInHand.gameObject.name.Contains("Vinyl1"))
                 {
                     objectInHand = collidingObject;
 
@@ -155,7 +170,10 @@ public class ControllerGrabObject : MonoBehaviour
             }
             else
             {
-                gramophone.UserInput = true;
+                if (gramophoneHead.IsHeadReady)
+                {
+                    gramophone.UserInput = true;
+                }
 
                 gramophone.materialRenderer.material.color = originalColor;
             }
@@ -225,11 +243,9 @@ public class ControllerGrabObject : MonoBehaviour
     private void ReleaseObject()
     {
 
-
         Debug.Log("Oi2");
 
-
-
+        
         if (GetComponent<FixedJoint>())
         {
             Debug.Log("Oi1");
